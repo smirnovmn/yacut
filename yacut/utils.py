@@ -1,6 +1,6 @@
 import string
 
-valid=(string.ascii_letters + string.digits)
+valid = (string.ascii_letters + string.digits)
 
 
 def check(shortlink):

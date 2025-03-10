@@ -1,6 +1,5 @@
 import random
 import string
-from random import randrange
 
 from flask import abort, flash, redirect, render_template
 
