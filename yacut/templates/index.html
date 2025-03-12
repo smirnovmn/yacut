@@ -21,13 +21,6 @@ YaCut - укоротитель ссылок
 
             <div class="mb-3">
               {{ form.original_link(class="form-control form-control-lg py-2", placeholder="Длинная ссылка") }}
-              {% if form.original_link.errors %}
-                <p class="text-danger">
-                  {% for error in form.original_link.errors %}
-                    {{ error }}
-                  {% endfor %}
-                </p>
-              {% endif %}
             </div>
 
             <div class="mb-3">

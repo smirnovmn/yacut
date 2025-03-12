@@ -1,16 +1,16 @@
+import os
 from flask import jsonify, request
 from werkzeug.exceptions import BadRequest
 
 from . import app, db
-from .constans import BASE_URL
+from .constans import LENGTH_SHORT_LINK
 from .error_handlers import InvalidAPIUsage
 from .models import URLMap
-from .utils import check
-from .views import get_unique_short_id
+from .utils import entry_db, get_unique_short_id, is_valid_shortlink
 
 
 @app.route('/api/id/', methods=['POST'])
-def add():
+def create_short_link():
     try:
         data = request.get_json()
     except BadRequest:
@@ -23,20 +23,15 @@ def add():
         )
     custom_id = data.get('custom_id')
     if not custom_id:
-        short_link = get_unique_short_id(6)
-    elif not check(custom_id):
+        short_link = get_unique_short_id(LENGTH_SHORT_LINK)
+    elif not is_valid_shortlink(custom_id):
         raise InvalidAPIUsage('Указано недопустимое имя для короткой ссылки')
     else:
         short_link = custom_id
-    urlmap = URLMap(
-        original=data['url'],
-        short=short_link,
-    )
-    db.session.add(urlmap)
-    db.session.commit()
+    urlmap = entry_db(data['url'], short_link)
     return jsonify({
-        'url': data['url'],
-        'short_link': BASE_URL + short_link
+        'short_link': os.getenv('BASE_URL') + urlmap.short,
+        'url': urlmap.original
     }), 201
 
 
