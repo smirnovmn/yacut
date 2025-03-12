@@ -25,7 +25,9 @@ def index_view():
         return render_template(
             'index.html',
             form=form,
-            short_url=os.getenv('BASE_URL', default='http://localhost/') + urlmap.short,
+            short_url=os.getenv(
+                'BASE_URL', default='http://localhost/'
+            ) + urlmap.short,
             original_link=urlmap.original
         )
     return render_template('index.html', form=form)
