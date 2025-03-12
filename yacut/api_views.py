@@ -3,7 +3,7 @@ import os
 from flask import jsonify, request
 from werkzeug.exceptions import BadRequest
 
-from . import app, db
+from . import app
 from .constans import LENGTH_SHORT_LINK
 from .error_handlers import InvalidAPIUsage
 from .models import URLMap
