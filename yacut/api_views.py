@@ -31,7 +31,9 @@ def create_short_link():
         short_link = custom_id
     urlmap = entry_db(data['url'], short_link)
     return jsonify({
-        'short_link': os.getenv('BASE_URL') + urlmap.short,
+        'short_link': os.getenv(
+            'BASE_URL', default='http://localhost/'
+        ) + urlmap.short,
         'url': urlmap.original
     }), 201
 
