@@ -1,8 +1,8 @@
-import string
 import random
+import string
+
 from . import db
 from .models import URLMap
-
 
 valid_symbols = (string.ascii_letters + string.digits)
 

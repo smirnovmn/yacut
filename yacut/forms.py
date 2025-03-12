@@ -3,7 +3,7 @@ from wtforms import SubmitField
 from wtforms.fields import StringField
 from wtforms.validators import Optional
 
-from .constans import ORIGINAL_LINK_RANGE, CUSTOM_ID_RANGE
+from .constans import CUSTOM_ID_RANGE, ORIGINAL_LINK_RANGE
 
 
 class UrlMapForm(FlaskForm):

@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from yacut import db
+
 from .constans import ORIGINAL_LINK_MAX_LENGTH, SHORT_LINK_MAX_LENGTH
 
 

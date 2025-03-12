@@ -1,6 +1,5 @@
 from wtforms.validators import Length
 
-
 ORIGINAL_LINK_RANGE = Length(1, 256)
 ORIGINAL_LINK_MAX_LENGTH = 256
 CUSTOM_ID_RANGE = Length(1, 128)

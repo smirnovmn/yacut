@@ -6,7 +6,8 @@ from . import app
 from .constans import LENGTH_SHORT_LINK
 from .forms import UrlMapForm
 from .models import URLMap
-from .utils import entry_db, get_unique_short_id, is_url_exists, is_valid_shortlink
+from .utils import (entry_db, get_unique_short_id, is_url_exists,
+                    is_valid_shortlink)
 
 
 @app.route('/', methods=['GET', 'POST'])
