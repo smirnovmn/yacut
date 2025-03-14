@@ -22,16 +22,8 @@ YaCut - укоротитель ссылок
             <div class="mb-3">
               {{ form.original_link(class="form-control form-control-lg py-2", placeholder="Длинная ссылка") }}
             </div>
-
             <div class="mb-3">
               {{ form.custom_id(class="form-control form-control-lg py-2", placeholder="Ваш вариант короткой ссылки") }}
-              {% if form.custom_id.errors %}
-                <p class="text-danger">
-                  {% for error in form.custom_id.errors %}
-                    {{ error }}
-                  {% endfor %}
-                </p>
-              {% endif %}
               {% with messages = get_flashed_messages() %}
               {% if messages %}
                 {% for message in messages %}

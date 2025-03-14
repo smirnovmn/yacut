@@ -4,10 +4,9 @@ from flask import jsonify, request
 from werkzeug.exceptions import BadRequest
 
 from . import app
-from .constans import LENGTH_SHORT_LINK
 from .error_handlers import InvalidAPIUsage
 from .models import URLMap
-from .utils import entry_db, get_unique_short_id, is_valid_shortlink
+from .utils import create_shortlink_api
 
 
 @app.route('/api/id/', methods=['POST'])
@@ -16,20 +15,7 @@ def create_short_link():
         data = request.get_json()
     except BadRequest:
         raise InvalidAPIUsage('Отсутствует тело запроса')
-    if not data.get('url'):
-        raise InvalidAPIUsage('"url" является обязательным полем!')
-    if URLMap.query.filter_by(original=data['url']).first() is not None:
-        raise InvalidAPIUsage(
-            'Предложенный вариант короткой ссылки уже существует.'
-        )
-    custom_id = data.get('custom_id')
-    if not custom_id:
-        short_link = get_unique_short_id(LENGTH_SHORT_LINK)
-    elif not is_valid_shortlink(custom_id):
-        raise InvalidAPIUsage('Указано недопустимое имя для короткой ссылки')
-    else:
-        short_link = custom_id
-    urlmap = entry_db(data['url'], short_link)
+    urlmap = create_shortlink_api(data.get('url'), data.get('custom_id'))
     return jsonify({
         'short_link': os.getenv(
             'BASE_URL', default='http://localhost/'
