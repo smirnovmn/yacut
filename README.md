@@ -71,4 +71,4 @@ flask run
 
 ## Автор:
 
-[Смирнов Михаил (https://github.com/smirnovmn)
+[Смирнов Михаил](https://github.com/smirnovmn)
